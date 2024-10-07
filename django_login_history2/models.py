@@ -61,7 +61,7 @@ def post_login(sender, user, request, **kwargs):
 
             try:
                 _ = Login._meta.get_field(key)
-                mapped_fields[key] = value
+                mapped_fields[key] = value or ''
             except FieldDoesNotExist:
                 pass
 
