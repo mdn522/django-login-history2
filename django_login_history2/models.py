@@ -51,7 +51,11 @@ def post_login(sender, user, request, **kwargs):
                 raise ValueError("Invalid geolocation method specified in settings.\n", er) from er
 
     if not result:
-        result = get_geolocation_data(client_ip)
+        try:
+            result = get_geolocation_data(client_ip)
+        except Exception:
+            result = {'error': True, 'reasons': str(Exception)}
+
         assert isinstance(result, dict)
 
         for key, value in result.items():
