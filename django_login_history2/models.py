@@ -54,7 +54,7 @@ def post_login(sender, user, request, **kwargs):
         try:
             result = get_geolocation_data(client_ip)
         except Exception:
-            result = {'error': True, 'reasons': str(Exception)}
+            result = {'error': True, 'reason': str(Exception)}
 
         assert isinstance(result, dict)
 
